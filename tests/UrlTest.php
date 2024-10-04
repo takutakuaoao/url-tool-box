@@ -10,7 +10,7 @@ class UrlTest extends TestCase
     /**
      * @dataProvider dataProviderGetProtocol
      */
-    public function test_get_protocol(string $url, string $expectedProtocol)
+    public function test_get_protocol(string $url, string $expectedProtocol): void
     {
         $sut = new Url($url);
 
@@ -22,7 +22,7 @@ class UrlTest extends TestCase
     /**
      * @dataProvider dataProviderInvalidProtocolURLs
      */
-    public function test_get_empty_when_invalid_protocol(string $url)
+    public function test_get_empty_when_invalid_protocol(string $url): void
     {
         $sut = new Url($url);
 
@@ -31,7 +31,10 @@ class UrlTest extends TestCase
         $this->assertEmpty($result, '$result must be not empty. $result is ' . $result);
     }
 
-    public function dataProviderGetProtocol()
+    /**
+     * @return array<string, array<string>>
+     */
+    public function dataProviderGetProtocol(): array
     {
         return [
             'http' => ['http://example.com', 'http'],
@@ -40,7 +43,10 @@ class UrlTest extends TestCase
         ];
     }
 
-    public function dataProviderInvalidProtocolURLs()
+    /**
+     * @return array<int, array<string>>
+     */
+    public function dataProviderInvalidProtocolURLs(): array
     {
         return [
             ['htt://example.com'],
