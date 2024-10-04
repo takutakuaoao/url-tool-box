@@ -1,0 +1,19 @@
+{
+    "name": "takutakuaoao/url-tool-box",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "UrlToolBox\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Takuya Aotsuka"
+        }
+    ],
+    "require": {}
+}
