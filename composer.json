@@ -15,5 +15,12 @@
             "name": "Takuya Aotsuka"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8.1.0"
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit tests"
+        ]
+    }
 }
