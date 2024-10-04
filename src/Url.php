@@ -6,7 +6,7 @@ namespace UrlToolBox;
 
 class Url
 {
-    private string | null $protocol;
+    private ?string $protocol;
 
     public function __construct(string $url)
     {
@@ -15,12 +15,12 @@ class Url
         $this->protocol = self::determineProtocol($formattedURL);
     }
 
-    public function getProtocol(): string | null
+    public function getProtocol(): ?string
     {
         return $this->protocol;
     }
 
-    private static function determineProtocol(string $url): string | null
+    private static function determineProtocol(string $url): ?string
     {
         if (str_starts_with($url, 'http://')) {
             return 'http';
