@@ -2,7 +2,10 @@
     "name": "takutakuaoao/url-tool-box",
     "type": "library",
     "require-dev": {
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^10.5",
+        "phpstan/phpstan": "^1.12",
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "codedungeon/phpunit-result-printer": "^0.32.0"
     },
     "license": "MIT",
     "autoload": {
@@ -10,10 +13,25 @@
             "UrlToolBox\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Takuya Aotsuka"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8.1.0"
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit tests --colors=always"
+        ],
+        "analyze": [
+            "vendor/bin/phpstan analyse src tests --level 9"
+        ]
+    }
 }
