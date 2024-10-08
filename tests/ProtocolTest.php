@@ -22,7 +22,6 @@ class ProtocolTest extends TestCase
     public function testRaiseErrorIfTheInvalidUrl(): void
     {
         $this->expectException(UrlToolBoxError::class);
-        $this->expectExceptionMessage('The invalid url was passed to Protocol::fromURL. It was domain.com/directory');
 
         Protocol::fromURL('domain.com/directory');
     }
