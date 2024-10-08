@@ -84,4 +84,44 @@ class HostNameTest extends TestCase
     }
 
     #[DataProvider('dataProvidderEqualy')]
+    public function testEqual(string $selfHost, string $otherHost): void
+    {
+        $sut = HostName::init($selfHost);
+        $compare = HostName::init($otherHost);
+
+        $this->assertTrue($sut->equal($compare));
+    }
+
+    /**
+     * @return array<string, array<mixed>>
+     */
+    public static function dataProvidderEqualy(): array
+    {
+        return [
+            'normal' => ['www.example.com', 'www.example.com'],
+            'with_start_space' => [' www.example.com', 'www.example.com'],
+            'with_end_space' => ['www.example.com ', 'www.example.com'],
+            'both_space' => [' www.example.com ', 'www.example.com'],
+        ];
+    }
+
+    #[DataProvider('dataProvidderNotEqualy')]
+    public function testNotEqual(string $selfHost, string $otherHost): void
+    {
+        $sut = HostName::init($selfHost);
+        $compare = HostName::init($otherHost);
+
+        $this->assertFalse($sut->equal($compare));
+    }
+
+    /**
+     * @return array<string, array<mixed>>
+     */
+    public static function dataProvidderNotEqualy(): array
+    {
+        return [
+            'not_equal' => ['www.example.com', 'www.test.com'],
+            'not_equal_sub_domain' => ['www.example.com', 'sub.example.com'],
+        ];
+    }
 }

@@ -46,4 +46,8 @@ class HostName
         return null;
     }
 
+    public function equal(HostName $other): bool
+    {
+        return $this->value === $other->value;
+    }
 }
