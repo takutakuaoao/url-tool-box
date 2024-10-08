@@ -6,9 +6,9 @@ namespace UrlToolBox;
 
 class UrlToolBoxError extends \Error
 {
-    public static function invalidURLError(string $location, string $url): UrlToolBoxError
+    public static function invalidURLError(string $url): UrlToolBoxError
     {
-        return new UrlToolBoxError('The invalid url was passed to ' . $location . '. It was ' . $url);
+        return new UrlToolBoxError('The invalid url was passed. The URL was ' . $url);
     }
 
     public function __construct(string $message)
