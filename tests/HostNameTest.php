@@ -40,4 +40,25 @@ class HostNameTest extends TestCase
         ];
     }
 
+    #[DataProvider('dataProvidderNoTopLevelDomainHostNames')]
+    public function testGetEmptyIfHasNoTopLevelDomain(string $host): void
+    {
+        $sut = HostName::init($host);
+
+        $result = $sut->getTopLevelDomain();
+
+        $this->assertSame(null, $result);
+    }
+
+    /**
+     * @return array<string, array<mixed>>
+     */
+    public static function dataProvidderNoTopLevelDomainHostNames(): array
+    {
+        return [
+            'end_dot' => ['error-domain.'],
+            'not_dot' => ['error-domain'],
+            'include_underbar' => ['www.example.c_om'],
+        ];
+    }
 }
