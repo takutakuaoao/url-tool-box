@@ -14,13 +14,14 @@ class Protocol
      */
     public static function fromURL(string $url): Protocol
     {
-        $parsed = parse_url($url);
+        $sheme = UrlParser::set($url)->pull('scheme');
 
-        if (!is_array($parsed) || !array_key_exists('scheme', $parsed)) {
-            throw UrlToolBoxError::invalidURLError('Protocol::fromURL', $url);
-        }
+        return new Protocol($sheme);
+    }
 
-        return new Protocol($parsed['scheme']);
+    public static function init(string $url): Protocol
+    {
+        return new Protocol($url);
     }
 
     public function __construct(private string $value)
