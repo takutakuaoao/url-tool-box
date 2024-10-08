@@ -16,4 +16,28 @@ class HostNameTest extends TestCase
 
         $this->assertEquals('example.com', $result);
     }
+
+    #[DataProvider('dataProvidderForGetTopLevelDomain')]
+    public function testGetTopLevelDomain(string $host, ?string $expected): void
+    {
+        $sut = HostName::init($host);
+
+        $result = $sut->getTopLevelDomain();
+
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * @return array<string, array<mixed>>
+     */
+    public static function dataProvidderForGetTopLevelDomain(): array
+    {
+        return [
+            'second_domain' => ['example.com', 'com'],
+            'sub_domain' => ['www.example.com', 'com'],
+            'start_dot' => ['.com', 'com'],
+            'include_hyhun' => ['example.c-om', 'c-om'],
+        ];
+    }
+
 }
