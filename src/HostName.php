@@ -37,4 +37,13 @@ class HostName
         return null;
     }
 
+    public function getSecondaryLevelDomain(): ?string
+    {
+        if (preg_match('/([a-z0-9-]+)\.([a-z0-9-]+)\z/i', $this->value, $matches)) {
+            return $matches[1];
+        }
+
+        return null;
+    }
+
 }

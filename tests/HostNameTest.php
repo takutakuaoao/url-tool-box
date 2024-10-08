@@ -61,4 +61,27 @@ class HostNameTest extends TestCase
             'include_underbar' => ['www.example.c_om'],
         ];
     }
+
+    #[DataProvider('dataProvidderForSecondaryLevelDomain')]
+    public function testGetSecondaryLevelDomain(string $host, string $expected): void
+    {
+        $sut = HostName::init($host);
+
+        $result = $sut->getSecondaryLevelDomain();
+
+        $this->assertSame($expected, $result);
+    }
+
+    /**
+     * @return array<string, array<mixed>>
+     */
+    public static function dataProvidderForSecondaryLevelDomain(): array
+    {
+        return [
+            'only_secondary_domain' => ['example.com', 'example'],
+            'sub_domain' => ['www.example.com', 'example'],
+        ];
+    }
+
+    #[DataProvider('dataProvidderEqualy')]
 }
